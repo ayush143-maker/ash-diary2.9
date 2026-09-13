@@ -31,10 +31,18 @@ export function RemindersSection() {
     if (!initialized.current) {
       initialized.current = true;
       // Keep the OS schedule in sync with a saved setting on cold start too.
-      syncDailyReminder(settings.dailyReminder, settings.reminderTime);
+      syncDailyReminder(settings.dailyReminder, settings.reminderTime).then((ok) => {
+        if (!ok && settings.dailyReminder) {
+          console.warn('Daily reminder could not be scheduled on cold start.');
+        }
+      });
       return;
     }
-    syncDailyReminder(settings.dailyReminder, settings.reminderTime);
+    syncDailyReminder(settings.dailyReminder, settings.reminderTime).then((ok) => {
+      if (!ok && settings.dailyReminder) {
+        showToast('The reminder couldn’t be scheduled on this device.', 'info');
+      }
+    });
   }, [settings.dailyReminder, settings.reminderTime, isLoading]);
 
   const handleToggle = (checked: boolean) => {
@@ -50,6 +58,14 @@ export function RemindersSection() {
     const granted = await requestNotificationPermission();
     if (!granted) {
       showToast('Notifications are off in device settings — reminders will stay paused.', 'info');
+      return;
+    }
+    const scheduled = await syncDailyReminder(true, settings.reminderTime);
+    if (!scheduled) {
+      showToast(
+        'Permission is on, but this device blocked the schedule — allow “Alarms & reminders” for ASH DIARY in system settings.',
+        'info'
+      );
       return;
     }
     updateSetting('dailyReminder', true);
