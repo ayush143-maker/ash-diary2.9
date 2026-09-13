@@ -46,6 +46,9 @@ jobs:
       - name: Patch AndroidManifest.xml for microphone permission
         run: bash scripts/patch-android-manifest.sh
 
+      - name: Patch splash theme for Android 12+ SplashScreen API
+        run: bash scripts/patch-android-splash-theme.sh
+
       - name: Generate native icons & splash screens from assets/
         run: npx @capacitor/assets generate --android --iconBackgroundColor '#F7F9F0' --splashBackgroundColor '#F7F9F0'
 
