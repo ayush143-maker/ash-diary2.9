@@ -81,70 +81,71 @@ export function MeHome() {
   const streak = getStreak();
 
   // ── Loading — structural mirror of the loaded page ─────────────
-  if (isLoading) {
+  
+          if (isLoading) {
     return (
-      <div className="px-5 pt-12" aria-busy="true" aria-label="Loading your space">
-        {/* Greeting: two serif lines + subtext, sprig on the right */}
+      <div className="px-5 pt-12" aria-busy="true">
+        {/* Greeting — thin lines exactly where the serif text sits */}
         <section className="mt-7 flex items-start justify-between gap-4">
           <div className="w-full">
-            <Skeleton className="h-8 w-64 rounded-control" />
-            <Skeleton className="mt-1.5 h-8 w-28 rounded-control" />
-            <Skeleton className="mt-2 h-4 w-56 rounded-control" />
+            <Skeleton className="h-7 w-56" />
+            <Skeleton className="mt-2 h-7 w-24" />
+            <Skeleton className="mt-2.5 h-3.5 w-48" />
           </div>
-          <Skeleton className="mt-1 h-[52px] w-[52px] shrink-0 rounded-control" />
+          <Skeleton className="mt-1 h-12 w-12 shrink-0 opacity-70" />
         </section>
 
-        {/* Photo frame — same chrome and aspect as ImageFrame */}
-        <div className="bg-surface border-line rounded-card mt-6 border p-3">
-          <Skeleton className="aspect-[10/7] w-full rounded-control" />
+        {/* Photo frame — THIN chrome (p-2) + same tilt as ImageFrame */}
+        <div className="bg-surface border-line rounded-card mt-6 rotate-[1.2deg] border p-2 shadow-sm">
+          <Skeleton className="aspect-[10/7] w-full rounded-[10px]" />
         </div>
 
-        {/* Month overview: label, title row, two stat cards */}
+        {/* Month overview */}
         <section className="mt-7">
-          <Skeleton className="h-3 w-32 rounded-control" />
-          <div className="mt-1.5 flex items-end justify-between">
-            <Skeleton className="h-7 w-44 rounded-control" />
-            <Skeleton className="h-4 w-16 rounded-control" />
+          <Skeleton className="h-2.5 w-28" />
+          <div className="mt-2 flex items-end justify-between">
+            <Skeleton className="h-6 w-40" />
+            <Skeleton className="h-3.5 w-14" />
           </div>
           <div className="mt-4 grid grid-cols-2 gap-3">
             <div className="bg-surface border-line rounded-card border p-4">
-              <Skeleton className="h-3 w-16 rounded-control" />
-              <Skeleton className="mt-2.5 h-5 w-24 rounded-control" />
+              <Skeleton className="h-2.5 w-14" />
+              <Skeleton className="mt-2 h-4 w-20" />
             </div>
             <div className="bg-surface border-line rounded-card border p-4">
-              <Skeleton className="h-3 w-24 rounded-control" />
-              <Skeleton className="mt-2.5 h-5 w-20 rounded-control" />
+              <Skeleton className="h-2.5 w-20" />
+              <Skeleton className="mt-2 h-4 w-16" />
             </div>
           </div>
         </section>
 
-        {/* Latest memory card */}
+        {/* Latest memory */}
         <section className="mt-8">
-          <div className="bg-surface border-line rounded-card relative overflow-hidden border p-6">
-            <Skeleton className="h-3 w-28 rounded-control" />
-            <Skeleton className="mt-3 h-7 w-3/4 rounded-control" />
-            <Skeleton className="mt-3 h-4 w-full rounded-control" />
-            <Skeleton className="mt-1.5 h-4 w-5/6 rounded-control" />
+          <div className="bg-surface border-line rounded-card border p-6">
+            <Skeleton className="h-2.5 w-24" />
+            <Skeleton className="mt-3 h-6 w-2/3" />
+            <Skeleton className="mt-3 h-3.5 w-full" />
+            <Skeleton className="mt-1.5 h-3.5 w-4/5" />
             <div className="mt-5 flex items-center justify-between">
-              <Skeleton className="h-3 w-24 rounded-control" />
-              <Skeleton className="h-3 w-28 rounded-control" />
+              <Skeleton className="h-2.5 w-20" />
+              <Skeleton className="h-2.5 w-24" />
             </div>
           </div>
         </section>
 
-        {/* Recent voice memories — two compact rows */}
+        {/* Recent voices — two slim rows */}
         <section className="mt-8">
-          <Skeleton className="h-3 w-40 rounded-control" />
+          <Skeleton className="h-2.5 w-36" />
           <div className="mt-3 space-y-2">
             {[0, 1].map((row) => (
               <div
                 key={row}
                 className="bg-surface border-line rounded-card flex items-center gap-3 border p-3"
               >
-                <Skeleton className="h-10 w-10 shrink-0 rounded-full" />
+                <Skeleton className="h-9 w-9 shrink-0 rounded-full" />
                 <div className="w-full">
-                  <Skeleton className="h-4 w-1/2 rounded-control" />
-                  <Skeleton className="mt-2 h-6 w-full rounded-control" />
+                  <Skeleton className="h-3.5 w-2/5" />
+                  <Skeleton className="mt-2 h-5 w-full" />
                 </div>
               </div>
             ))}
