@@ -82,39 +82,40 @@ export function MeHome() {
 
   // ── Loading — structural mirror of the loaded page ─────────────
   
-          if (isLoading) {
+       if (isLoading) {
     return (
       <div className="px-5 pt-12" aria-busy="true">
         {/* Greeting — thin lines exactly where the serif text sits */}
         <section className="mt-7 flex items-start justify-between gap-4">
           <div className="w-full">
-            <Skeleton className="h-7 w-56" />
-            <Skeleton className="mt-2 h-7 w-24" />
-            <Skeleton className="mt-2.5 h-3.5 w-48" />
+            <Skeleton className="h-7 w-56 opacity-80" />
+            <Skeleton className="mt-2 h-7 w-24 opacity-80" />
+            <Skeleton className="mt-2.5 h-3.5 w-48 opacity-70" />
           </div>
-          <Skeleton className="mt-1 h-12 w-12 shrink-0 opacity-70" />
+          <Skeleton className="mt-1 h-12 w-12 shrink-0 opacity-60" />
         </section>
 
-        {/* Photo frame — THIN chrome (p-2) + same tilt as ImageFrame */}
-        <div className="bg-surface border-line rounded-card mt-6 rotate-[1.2deg] border p-2 shadow-sm">
-          <Skeleton className="aspect-[10/7] w-full rounded-[10px]" />
+        {/* Photo frame — thin chrome (p-2), COUNTER-CLOCKWISE tilt like the
+            real ImageFrame, and the true ~3:2 image aspect (not 10/7) */}
+        <div className="bg-surface border-line rounded-card mt-6 rotate-[-1.2deg] border p-2 shadow-sm">
+          <Skeleton className="aspect-[3/2] w-full rounded-[10px] opacity-70" />
         </div>
 
         {/* Month overview */}
         <section className="mt-7">
-          <Skeleton className="h-2.5 w-28" />
+          <Skeleton className="h-2.5 w-28 opacity-70" />
           <div className="mt-2 flex items-end justify-between">
-            <Skeleton className="h-6 w-40" />
-            <Skeleton className="h-3.5 w-14" />
+            <Skeleton className="h-6 w-40 opacity-80" />
+            <Skeleton className="h-3.5 w-14 opacity-70" />
           </div>
           <div className="mt-4 grid grid-cols-2 gap-3">
             <div className="bg-surface border-line rounded-card border p-4">
-              <Skeleton className="h-2.5 w-14" />
-              <Skeleton className="mt-2 h-4 w-20" />
+              <Skeleton className="h-2.5 w-14 opacity-70" />
+              <Skeleton className="mt-2 h-4 w-20 opacity-80" />
             </div>
             <div className="bg-surface border-line rounded-card border p-4">
-              <Skeleton className="h-2.5 w-20" />
-              <Skeleton className="mt-2 h-4 w-16" />
+              <Skeleton className="h-2.5 w-20 opacity-70" />
+              <Skeleton className="mt-2 h-4 w-16 opacity-80" />
             </div>
           </div>
         </section>
@@ -122,30 +123,30 @@ export function MeHome() {
         {/* Latest memory */}
         <section className="mt-8">
           <div className="bg-surface border-line rounded-card border p-6">
-            <Skeleton className="h-2.5 w-24" />
-            <Skeleton className="mt-3 h-6 w-2/3" />
-            <Skeleton className="mt-3 h-3.5 w-full" />
-            <Skeleton className="mt-1.5 h-3.5 w-4/5" />
+            <Skeleton className="h-2.5 w-24 opacity-70" />
+            <Skeleton className="mt-3 h-6 w-2/3 opacity-80" />
+            <Skeleton className="mt-3 h-3.5 w-full opacity-70" />
+            <Skeleton className="mt-1.5 h-3.5 w-4/5 opacity-70" />
             <div className="mt-5 flex items-center justify-between">
-              <Skeleton className="h-2.5 w-20" />
-              <Skeleton className="h-2.5 w-24" />
+              <Skeleton className="h-2.5 w-20 opacity-70" />
+              <Skeleton className="h-2.5 w-24 opacity-70" />
             </div>
           </div>
         </section>
 
         {/* Recent voices — two slim rows */}
         <section className="mt-8">
-          <Skeleton className="h-2.5 w-36" />
+          <Skeleton className="h-2.5 w-36 opacity-70" />
           <div className="mt-3 space-y-2">
             {[0, 1].map((row) => (
               <div
                 key={row}
                 className="bg-surface border-line rounded-card flex items-center gap-3 border p-3"
               >
-                <Skeleton className="h-9 w-9 shrink-0 rounded-full" />
+                <Skeleton className="h-9 w-9 shrink-0 rounded-full opacity-80" />
                 <div className="w-full">
-                  <Skeleton className="h-3.5 w-2/5" />
-                  <Skeleton className="mt-2 h-5 w-full" />
+                  <Skeleton className="h-3.5 w-2/5 opacity-70" />
+                  <Skeleton className="mt-2 h-5 w-full opacity-70" />
                 </div>
               </div>
             ))}
@@ -154,7 +155,6 @@ export function MeHome() {
       </div>
     );
   }
-
   return (
     <div className="px-5 pt-12">
       {/* Greeting — name, alongside the tappable photo */}
