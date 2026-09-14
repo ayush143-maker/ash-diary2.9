@@ -31,6 +31,11 @@ function timeGreeting(): string {
  *
  * Intentionally quiet: wordmark, one photo frame, a greeting,
  * the month at a glance, and the two most recent memories.
+ *
+ * LOADING STATE: the skeleton below is a structural X-ray of this exact
+ * page — same section margins, same card chrome, same photo aspect —
+ * so when real data swaps in, nothing jumps and it reads as "the ME
+ * page is loading", never as "some other screen appeared first".
  */
 export function MeHome() {
   const router = useRouter();
@@ -75,14 +80,76 @@ export function MeHome() {
 
   const streak = getStreak();
 
-  // ── Loading ────────────────────────────────────────────────────
+  // ── Loading — structural mirror of the loaded page ─────────────
   if (isLoading) {
     return (
-      <div className="px-5 pt-12">
-        <Skeleton className="h-6 w-44" />
-        <Skeleton className="mt-6 h-9 w-56" />
-        <Skeleton className="mt-3 h-4 w-64" />
-        <Skeleton className="mt-8 h-44 w-full rounded-card" />
+      <div className="px-5 pt-12" aria-busy="true" aria-label="Loading your space">
+        {/* Greeting: two serif lines + subtext, sprig on the right */}
+        <section className="mt-7 flex items-start justify-between gap-4">
+          <div className="w-full">
+            <Skeleton className="h-8 w-64 rounded-control" />
+            <Skeleton className="mt-1.5 h-8 w-28 rounded-control" />
+            <Skeleton className="mt-2 h-4 w-56 rounded-control" />
+          </div>
+          <Skeleton className="mt-1 h-[52px] w-[52px] shrink-0 rounded-control" />
+        </section>
+
+        {/* Photo frame — same chrome and aspect as ImageFrame */}
+        <div className="bg-surface border-line rounded-card mt-6 border p-3">
+          <Skeleton className="aspect-[10/7] w-full rounded-control" />
+        </div>
+
+        {/* Month overview: label, title row, two stat cards */}
+        <section className="mt-7">
+          <Skeleton className="h-3 w-32 rounded-control" />
+          <div className="mt-1.5 flex items-end justify-between">
+            <Skeleton className="h-7 w-44 rounded-control" />
+            <Skeleton className="h-4 w-16 rounded-control" />
+          </div>
+          <div className="mt-4 grid grid-cols-2 gap-3">
+            <div className="bg-surface border-line rounded-card border p-4">
+              <Skeleton className="h-3 w-16 rounded-control" />
+              <Skeleton className="mt-2.5 h-5 w-24 rounded-control" />
+            </div>
+            <div className="bg-surface border-line rounded-card border p-4">
+              <Skeleton className="h-3 w-24 rounded-control" />
+              <Skeleton className="mt-2.5 h-5 w-20 rounded-control" />
+            </div>
+          </div>
+        </section>
+
+        {/* Latest memory card */}
+        <section className="mt-8">
+          <div className="bg-surface border-line rounded-card relative overflow-hidden border p-6">
+            <Skeleton className="h-3 w-28 rounded-control" />
+            <Skeleton className="mt-3 h-7 w-3/4 rounded-control" />
+            <Skeleton className="mt-3 h-4 w-full rounded-control" />
+            <Skeleton className="mt-1.5 h-4 w-5/6 rounded-control" />
+            <div className="mt-5 flex items-center justify-between">
+              <Skeleton className="h-3 w-24 rounded-control" />
+              <Skeleton className="h-3 w-28 rounded-control" />
+            </div>
+          </div>
+        </section>
+
+        {/* Recent voice memories — two compact rows */}
+        <section className="mt-8">
+          <Skeleton className="h-3 w-40 rounded-control" />
+          <div className="mt-3 space-y-2">
+            {[0, 1].map((row) => (
+              <div
+                key={row}
+                className="bg-surface border-line rounded-card flex items-center gap-3 border p-3"
+              >
+                <Skeleton className="h-10 w-10 shrink-0 rounded-full" />
+                <div className="w-full">
+                  <Skeleton className="h-4 w-1/2 rounded-control" />
+                  <Skeleton className="mt-2 h-6 w-full rounded-control" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     );
   }
